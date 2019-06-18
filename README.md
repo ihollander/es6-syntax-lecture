@@ -1,5 +1,3 @@
-
-
 # Helpful ES6 Syntax to Know for React and Beyond ⚛️
 
 ![](https://media.giphy.com/media/13twUEuUnCrEju/giphy.gif)
@@ -71,51 +69,39 @@ const pizzaObj2 = { pizza, restaurant }
 
 ---
 
-#### ES6 Spread Operator
+#### ES6 Spread Operator with Objects
+Important for IMMUTABILITY
 
-- `slice()` or `Object.assign()`
-- removing elements from an array
+- vs `Object.assign()`
 
 ```js
-const mud = {
-  blood: 'it iz spooky season rn'
+const pasta = {
+  sauce: 'red',
+  garlicky: true
 }
 
-const mudCopy = { ...mud, parents: 'expectations' }
-// first arg is target obj; the thing i want to add properties to
-const mudCopy2 = Object.assign({}, mudCopy)
+// OLDer WAY
 // take all the key/value pairs from mudCopy and merge them into this new TARGET OBJ, which happens to be blank
+const morePasta = Object.assign({}, pasta)
 
+pasta !== morePasta // copy of the object, not mutation
+
+// NEW HOTNESS
+// first arg is target obj; the thing i want to add properties to
+const moreMorePasta = { ...pasta, cheese: 'please' }
 ```
 
-```js
-const names = ['evans', 'murd3rf4ce']
-const noEvans = names.slice(1)
-
-const removedEvans = names.filter(name => name !== 'evans')
-```
-
-- DIY Filter
+#### ES6 Spread Operator With Arrays
+- vs `array1.concat(array2)`
 
 ```js
-Array.prototype.myFilter = function(callback) {
-  const filtered = []
+const spices = ['cumin', 'coriander']
 
-  for (let i = 0; i < this.length; i++) {
-    const currentArrayElement = this[i]
-    if (callback(currentArrayElement)) {
-      filtered.push(currentArrayElement)
-    }
-  }
-  return filtered
-}
+const spices2 = ['black pepper']
 
+const allTheSpices = spices.concat(spices2)
 
-Array.prototype.monkeyPatch = '🙈'
-
-
-[].filter
-
+const allTheSpicesAgain = [...spices, ...spices2]
 ```
 
 ---
@@ -129,44 +115,72 @@ const explicitReturn = () => {
   return 'hi'
 }
 
+const withOneArgOnly = name => `hi ${name}`
+const withMultipleArgs = (name, greet) => `${greet} ${name}`
+
+// less code ↓
+const double = function (num) {
+  return num * 2
+}
+const double = (num) => {
+  return num * 2
+}
+const double = (num) => num * 2
+const double = num => num * 2
 ```
 
 ---
 
 #### function binding vs arrow functions
+Important to know, refer to `this` keyword lecture!
 
 ```javascript
 const dog = {
-  name: 'winfield',
-  favSnacks: ['cheese', 'peanut butter', 'carrots'],
+  name: 'fezzik',
+  favSnacks: ['turkey', 'peanut butter', 'soccer balls'],
   sayName: function() {
+    // what is this
     return this.name
   },
   barkName: () => {
-    return this.name + 'BARK!'
+    // what is this
+    return this.name + ' BARK!'
   },
   sayFavFoods: function() {
-    // this is dog
+    // what is this
     this.favSnacks.forEach(s => {
+      // what is this
       console.log(`${this.name} likes ${s}`)
     })
   },
   sayFavFoodsNoArrow: function() {
+    // what is this
     this.favSnacks.forEach(function(snack) {
+      // what is this
       console.log(`${this.name} likes ${snack}`)
     })
+  },
+  sayFavFoodsWithBind: function() {
+    // what is this
+    this.favSnacks.forEach(function(s) {
+      // what is this
+      console.log(`${this.name} likes ${s}`)
+    }.bind(this))
   }
 }
-// this will be dog
-dog.sayName() //'winfield'
-// this will be the window
-dog.barkName() //'undefined BARK!'
+
+dog.sayName()
+dog.barkName()
 dog.sayFavFoods()
+dog.sayFavFoodsNoArrow()
+dog.sayFavFoodsWithBind()
+
 ```
 
 ---
 
 #### class instance properties and class syntax in general
+Important to know, refer to OO lecture!
 
 ```javascript
 
@@ -185,12 +199,36 @@ class Dog {
 
 ---
 
-#### passing functions around as arguments (callbacks) and ES6 Iterators (map, reduce, forEach, filter, find, etc)
+#### passing functions around as arguments (callbacks)
 
 ```javascript
-const names = ['dracular', 'voldemort', 'the hash slinging slasher']
+const names = ['gabbie', 'dana', 'ian']
 
+// anonymous inline callback fn
 names.map((name) => name.toUpperCase())
+
+// vs fn reference
+const upperCaser = name => name.toUpperCase()
+names.map(upperCaser)
+
+// be careful of extra args!
+const nums = [1,2,3]
+nums.map(parseInt)
+```
+
+---
+#### ES6 Iterators (map, reduce, forEach, filter, find, etc)
+What iterators mutate data? (sort, splice, push, pop...) 
+
+```js
+const names = ['evans', 'chef its ya boi RD']
+
+const noEvans = names.slice(1) // non-destructive
+names.splice(1) // destructive
+
+const removedEvans = names.filter(name => name !== 'evans') // non-destructive
+
+const foundEvans = names.find(name => name === 'evans') // non-destructive; returns ELEMENT not ARRAY
 
 ```
 
@@ -199,6 +237,13 @@ names.map((name) => name.toUpperCase())
 #### dynamic object keys
 
 ```javascript
+const bingo = {}
+const yaboi = 'evans'
+// bracket notation
+bingo[yaboi] = 'yeet'
+// vs dot
+bingo.yaboi = 'POWERFUL'
+
 function dynamicSetKeys(obj, key, val) {
   // obj -> {}
   // key -> 'topping'
@@ -210,18 +255,18 @@ function dynamicSetKeys(obj, key, val) {
 
 ```
 
+### Bonus: Conditional rendering in template literals
+
 ```js
-const dog = {
-  name: 'winfield',
-  favSnacks: ['carrots', 'peanut butter'],
-  listFavSnacks: function() {
-    // var that = this
-    this.favSnacks.forEach(function(snack) {
-      // console.log(that.name, snack)
-      // console.log(this.name, snack)
-    }.bind(this))
-  }
-}
+const aTruthyVariable = true
+const moreContent = "some more content"
+
+const stringWithIf = `This will break ☹️ ${if (aTruthyVariable) { moreContent }}`
+
+const stringWithTernary = `You can use ternary in template literals if u want ${aTruthyVariable ? moreContent : ""}`
+
+const stringWithLogicalAnd = `This technique will ALSO add some things to the string if we want ${aTruthyVariable && moreContent}`
+
 ```
 
 ### External Resources
