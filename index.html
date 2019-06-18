@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>#FFF8E7</title>
+  <script src="src/index.js"></script>
+  <style>
+    body {
+      background-color: #FFF8E7; /*Cosmic Latte*/
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    .container {
+      margin: 0 auto;
+      width: 80%;
+      /* min-width: 800px; */
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+    }
+
+    .column {
+      width: 50%;
+      padding: 20px;
+    }
+
+    .field label {
+      width: 30%;
+    }
+
+    .field input {
+      float: right;
+      width: 65%;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <div class="container">
+      <div class="row">
+        <h1>🌌The Color of the Universe 🌌</h1>
+      </div>
+      <div class="row">
+        <div class="column">
+          <h2>New Name Suggestions</h2>
+          <form id="new-name-suggestion">
+            <div class="field">
+              <label for="name">Color Name</label>
+              <input id="name" name="name" />
+            </div>
+            <div class="field">
+              <label for="credit">Credit</label>
+              <input id="credit" name="credit" />
+            </div>
+            <div class="submit">
+              <input type="submit" />
+            </div>
+          </form>
+        </div>
+        <div class="column">
+          <h2>Leaderboard</h2>
+          <ul id="universe-color-names"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

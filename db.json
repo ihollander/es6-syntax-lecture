@@ -1,0 +1,64 @@
+{
+  "colors": [
+    {
+      "id": 1,
+      "name": "Cosmic Latte",
+      "credit": "Peter Drum",
+      "votes": 26
+    },
+    {
+      "id": 2,
+      "name": "Cappuccino Cosmico",
+      "credit": "Peter Drum",
+      "votes": 17
+    },
+    {
+      "id": 3,
+      "name": "Big Bang Buff/Blush/Beige",
+      "credit": "Many entrants",
+      "votes": 13
+    },
+    {
+      "id": 4,
+      "name": "Cosmic Cream",
+      "credit": "Several entrants",
+      "votes": 8
+    },
+    {
+      "id": 5,
+      "name": "Astronomer Green",
+      "credit": "Unknown",
+      "votes": 8
+    },
+    {
+      "id": 6,
+      "name": "Astronomer Almond",
+      "credit": "Lisa Rose",
+      "votes": 7
+    },
+    {
+      "id": 7,
+      "name": "Skyvory",
+      "credit": "Michael Howard",
+      "votes": 7
+    },
+    {
+      "id": 8,
+      "name": "Univeige",
+      "credit": "Several entrants",
+      "votes": 6
+    },
+    {
+      "id": 8,
+      "name": "Cosmic Khaki",
+      "credit": "Unknown",
+      "votes": 5
+    },
+    {
+      "id": 9,
+      "name": "Primordial Clam Chowder",
+      "credit": "Unknown",
+      "votes": 4
+    }
+  ]
+}
