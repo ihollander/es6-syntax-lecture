@@ -1,3 +1,5 @@
+
+
 # Helpful ES6 Syntax to Know for React and Beyond ⚛️
 
 ![](https://media.giphy.com/media/13twUEuUnCrEju/giphy.gif)
@@ -6,7 +8,7 @@
 
 ## The Following are Used heavily in Mod 4 for React (and are important to know if you're writing modern JavaScript):
 
-#### destructuring
+#### Object and Array destructuring
 
 ```js
 const spaceship = {
@@ -40,11 +42,19 @@ class Person {
   }
 }
 
+// with arrays too!
+const array = ["️☕", "🥯", "🍩"]
+const [coffee, bagel, donut] = array
+
+console.log(coffee) // "️☕"
+console.log(bagel) // "🥯"
+console.log(donut) // "🍩"
+
 ```
 
 ---
 
-#### Object Initializer (key value assignment) shorthand
+#### Object property definitions shorthand (key value assignment)
 
 ```javascript
 const pizza = 'pepperoni'

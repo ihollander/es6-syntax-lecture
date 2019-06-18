@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /** Render Helpers **/
-  // REFACTOR: Object destructuring in argument
   function renderColor(color) {
+    // REFACTOR: Object destructuring in argument
     const li = document.createElement("li");
     li.innerHTML = `
       <span>${color.name}</span>
